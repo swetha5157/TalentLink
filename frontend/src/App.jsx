@@ -1,5 +1,6 @@
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
-import {HomeLayout,Landing,Register,Login,DashboardLayout,Error} from './pages'
+import {HomeLayout,Landing,Register,Login,
+  DashboardLayout,Error} from './pages'
 const myroutes=createBrowserRouter([
   {
     path:'/',
