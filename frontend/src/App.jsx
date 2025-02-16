@@ -3,27 +3,36 @@ import {HomeLayout,Landing,Register,Login,DashboardLayout,Error} from './pages'
 const myroutes=createBrowserRouter([
   {
     path:'/',
-    element:<HomeLayout/>
-  },
-  {
-    path:'/register',
+    element:<HomeLayout/>,
+    errorElement:<Error/>,
+    children:[
+      {
+        index:true,
+        element:<Landing/>
+      },
+       {
+    path:'register',
     element:<Register/>
   },
   {
-    path:'/login',
+    path:'login',
     element:<Login/>
   },
   {
-    path:'/error',
+    path:'error',
     element:<Error/>
   },{
-    path:'/dashboard',
+    path:'dashboard',
     element:<DashboardLayout/>
   },
   {
-    path:'/landing',
+    path:'landing',
     element:<Landing/>
   }
+    ],
+  }
+//  here the path '/' is parent and the links in children[] are relative to the parent..so for
+//  the path in the children no need forward slash
 ]);
 function App() {
   return (
