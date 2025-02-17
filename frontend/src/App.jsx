@@ -1,6 +1,6 @@
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import {HomeLayout,Landing,Register,Login,
-  DashboardLayout,Error} from './pages'
+  DashboardLayout,Error,AddJob,Stats,AllJobs,Profile,Admin} from './pages'
 const myroutes=createBrowserRouter([
   {
     path:'/',
@@ -24,7 +24,31 @@ const myroutes=createBrowserRouter([
     element:<Error/>
   },{
     path:'dashboard',
-    element:<DashboardLayout/>
+    element:<DashboardLayout/>,
+    children:[
+      {
+        index:true,
+        element:<AddJob/>
+      },
+      {
+        path:'alljobs',
+        element:<AllJobs/>,
+
+      },
+       {
+        path:'profile',
+        element:<Profile/>,
+        
+      }, {
+        path:'stats',
+        element:<Stats/>,
+      },
+       {
+        path:'admin',
+        element:<Admin/>,
+        
+      }
+    ]
   },
   {
     path:'landing',
