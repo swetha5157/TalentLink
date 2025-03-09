@@ -9,7 +9,7 @@ import {
     deleteJob
 } from '../controller/jobController.js'
 import { validateJobInput,validateIdParam } from '../middleware/validationHandler.js';
-router.route('/').get(getAllJobs).post(validateJobInput,validateIdParam,createJob)  ;
+router.route("/").get(getAllJobs).post(validateJobInput, createJob);
 router
   .route("/:id")
   .get(validateIdParam,getJob)

@@ -1,13 +1,12 @@
 import Job from '../models/jobModel.js'
 export const getAllJobs = async (req, res) => {
-  console.log(req.user);
-    const jobs=await Job.find({});
+    const jobs=await Job.find({createdBy:req.user.userId});
   res.status(200).json({ jobs });
 };
 
 export const createJob = async (req, res) => {
-  const { company, position } = req.body;
-  const job=await Job.create({company,position})
+  req.body.createdBy=req.user.userId;
+  const job=await Job.create(req.body)
   res.status(201).json({msg:'created new job', job });
 };
 

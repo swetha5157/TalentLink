@@ -7,6 +7,7 @@ export const authenticateUser=async(req ,res ,next)=>{
     try{
 const {userId,role}=verifyJWT(token);
 console.log({userId,role});
+req.user = { userId, role };
 next();
 }catch(e){
 throw new UnauthenticatedError('auth failed')
