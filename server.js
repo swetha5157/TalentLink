@@ -21,6 +21,12 @@ app.use(morgan("dev"));
 app.use(cookieParser());
 
 app.use(express.json());
+
+app.get('/test',(req,res)=>{
+  res.json({msg:'test route'});
+})
+
+
 app.use("/jobs", authenticateUser,jobRouter);
 app.use("/users",authenticateUser,userRouter);
 app.use("/auth",authRouter);
