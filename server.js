@@ -5,18 +5,21 @@ import express from "express";
 const app = express();
 import morgan from "morgan";
 import mongoose from "mongoose";
+import cookieParser from 'cookie-parser';
 //routers
 import jobRouter from './routes/jobRoutes.js'
-
+import userRouter from './routes/userRoutes.js'
 //middleware
 import errorHandlerMiddleware from './middleware/errorHandler.js';
-import { validationResult } from 'express-validator';
+import { authenticateUser } from './middleware/authHandler.js';
 if(process.env.NODE_ENV==='development'){
 app.use(morgan("dev"));
 }
-app.use(express.json());
-app.use("/jobs", jobRouter);
+app.use(cookieParser());
 
+app.use(express.json());
+app.use("/jobs", authenticateUser,jobRouter);
+app.use("/auth",userRouter);
 //not found middleware
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "not found" });
