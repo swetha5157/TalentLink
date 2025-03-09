@@ -8,7 +8,10 @@ import mongoose from "mongoose";
 import cookieParser from 'cookie-parser';
 //routers
 import jobRouter from './routes/jobRoutes.js'
-import userRouter from './routes/userRoutes.js'
+import userRouter from "./routes/userRoutes.js";
+
+import authRouter from './routes/authRoutes.js'
+
 //middleware
 import errorHandlerMiddleware from './middleware/errorHandler.js';
 import { authenticateUser } from './middleware/authHandler.js';
@@ -19,7 +22,8 @@ app.use(cookieParser());
 
 app.use(express.json());
 app.use("/jobs", authenticateUser,jobRouter);
-app.use("/auth",userRouter);
+app.use("/users",authenticateUser,userRouter);
+app.use("/auth",authRouter);
 //not found middleware
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "not found" });
