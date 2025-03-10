@@ -1,13 +1,13 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import axios from "axios";
-import customFetch from './utils/customFetch.js';
 import App from './App.jsx'
-const data = await customFetch.get("/api/test");
-console.log(data);
+import 'react-toastify/dist/ReactToastify.css';
+import {ToastContainer} from 'react-toastify';
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
+    <ToastContainer position='top-center'></ToastContainer>
   </StrictMode>,
 )
