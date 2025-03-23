@@ -1,12 +1,14 @@
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import {HomeLayout,Landing,Register,Login,
-  DashboardLayout,Error,AddJob,Stats,AllJobs,Profile,Admin} from './pages'
+  DashboardLayout,Error,AddJob,Stats,AllJobs,Profile,Admin,EditJob} from './pages'
 import { action as registerAction} from './pages/Register';
 import {action as loginAction} from './pages/Login.jsx'
 import {loader as dashboardLoader} from './pages/DashboardLayout.jsx'
 import { action as addJobAction } from "./pages/AddJob.jsx";
 import { loader as allJobsLoader } from "./pages/AllJobs.jsx";
-
+import { action as editJobAction } from "./pages/EditJob.jsx";
+import { action as editJobLoader } from "./pages/EditJob.jsx";
+import { action as deleteJobAction } from "./pages/DeleteJob.jsx";
 
 export const checkDefaultTheme=()=>{
   const isDarkTheme=localStorage.getItem('darkTheme')==='true';
@@ -42,17 +44,17 @@ const myroutes = createBrowserRouter([
       {
         path: "dashboard",
         element: <DashboardLayout />,
-        loader:dashboardLoader,
+        loader: dashboardLoader,
         children: [
           {
             index: true,
             element: <AddJob />,
-            action:addJobAction
+            action: addJobAction,
           },
           {
             path: "alljobs",
             element: <AllJobs />,
-            loader:allJobsLoader
+            loader: allJobsLoader,
           },
           {
             path: "profile",
@@ -65,6 +67,16 @@ const myroutes = createBrowserRouter([
           {
             path: "admin",
             element: <Admin />,
+          },
+          {
+            path: "edit-job/:id",
+            element: <EditJob />,
+            loader: editJobLoader,
+            action: editJobAction,
+          },
+          {
+            path: "delete-job/:id",
+            action:deleteJobAction
           },
         ],
       },
