@@ -1,8 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
+
   .job-icon {
     font-size: 1rem;
     margin-right: 1rem;

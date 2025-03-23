@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Wrapper = styled.article`
   background: var(--background-secondary-color);
@@ -6,12 +6,13 @@ const Wrapper = styled.article`
   display: grid;
   grid-template-rows: 1fr auto;
   box-shadow: var(--shadow-2);
+
   header {
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid var(--grey-100);
+    padding: 1rem 1rem;
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
+    border-bottom: 1px solid var(--grey-100);
   }
   .main-icon {
     width: 60px;
@@ -24,19 +25,22 @@ const Wrapper = styled.article`
     font-weight: 700;
     text-transform: uppercase;
     color: var(--white);
-    margin-right: 2rem;
+    margin-right: 1.5rem;
+    border-bottom: 1px solid var(--grey-100);
   }
   .info {
     h5 {
       margin-bottom: 0.5rem;
+      margin-right: 0.5rem;
     }
     p {
       margin: 0;
       text-transform: capitalize;
-      letter-spacing: var(--letter-spacing);
       color: var(--text-secondary-color);
+      letter-spacing: var(--letter-spacing);
     }
   }
+
   .content {
     padding: 1rem 1.5rem;
   }
@@ -51,6 +55,7 @@ const Wrapper = styled.article`
       grid-template-columns: 1fr 1fr;
     }
   }
+
   .status {
     border-radius: var(--border-radius);
     text-transform: capitalize;
