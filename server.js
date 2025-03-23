@@ -6,12 +6,18 @@ const app = express();
 import morgan from "morgan";
 import mongoose from "mongoose";
 import cookieParser from 'cookie-parser';
+import cors from "cors";
 //routers
 import jobRouter from './routes/jobRoutes.js'
 import userRouter from "./routes/userRoutes.js";
 
 import authRouter from './routes/authRoutes.js'
+const corsOptions = {
+  origin: "http://localhost:5173", // Allow requests from frontend
+  credentials: true, // Allow sending cookies & headers
+};
 
+app.use(cors(corsOptions));
 //middleware
 import errorHandlerMiddleware from './middleware/errorHandler.js';
 import { authenticateUser } from './middleware/authHandler.js';
@@ -25,6 +31,8 @@ app.use(express.json());
 app.get('/test',(req,res)=>{
   res.json({msg:'test route'});
 })
+
+
 
 
 app.use("/jobs", authenticateUser,jobRouter);
@@ -47,7 +55,7 @@ try{
 
 }catch(e){
   console.log(e);
-  prcoess.exit(1);
+  process.exit(1);
 }
 
 

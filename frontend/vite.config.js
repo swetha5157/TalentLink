@@ -6,10 +6,13 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api": {
+      "/auth": {
         target: "http://localhost:5100",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+      "/jobs": {
+        target: "http://localhost:5100",
+        changeOrigin: true,
       },
     },
   },
