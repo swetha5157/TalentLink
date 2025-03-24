@@ -10,6 +10,7 @@ import { action as editJobAction } from "./pages/EditJob.jsx";
 import { action as editJobLoader } from "./pages/EditJob.jsx";
 import { action as deleteJobAction } from "./pages/DeleteJob.jsx";
 import { loader as adminLoader } from "./pages/Admin.jsx";
+import { action as profileAction } from "./pages/Profile.jsx";
 
 export const checkDefaultTheme=()=>{
   const isDarkTheme=localStorage.getItem('darkTheme')==='true';
@@ -60,6 +61,7 @@ const myroutes = createBrowserRouter([
           {
             path: "profile",
             element: <Profile />,
+            action:profileAction,
           },
           {
             path: "stats",
