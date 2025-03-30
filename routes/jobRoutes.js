@@ -5,12 +5,16 @@ import {
     getJob,
     createJob,
     editJob,
-    deleteJob
+    deleteJob,showStats
 } from '../controller/jobController.js'
 import { validateJobInput,validateIdParam } from '../middleware/validationHandler.js';
 import { checkForTestUsers } from '../middleware/authHandler.js';
 
 router.route("/").get(getAllJobs).post(checkForTestUsers,validateJobInput, createJob);
+
+//express reads from top to bottom
+//so write stats router before /:id
+router.route('/stats').get(showStats);
 router
   .route("/:id")
   .get(validateIdParam,getJob)
