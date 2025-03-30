@@ -7,7 +7,7 @@ import {loader as dashboardLoader} from './pages/DashboardLayout.jsx'
 import { action as addJobAction } from "./pages/AddJob.jsx";
 import { loader as allJobsLoader } from "./pages/AllJobs.jsx";
 import { action as editJobAction } from "./pages/EditJob.jsx";
-import { action as editJobLoader } from "./pages/EditJob.jsx";
+import { loader as editJobLoader } from "./pages/EditJob.jsx";
 import { action as deleteJobAction } from "./pages/DeleteJob.jsx";
 import { loader as adminLoader } from "./pages/Admin.jsx";
 import { action as profileAction } from "./pages/Profile.jsx";

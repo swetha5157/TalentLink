@@ -11,12 +11,12 @@ export const action=async({request})=>{
   try{
     await customFetch.post('/jobs',data)
     toast.success('Job added successfully');
-return redirect("/dashboard/alljobs"); 
+    return redirect("/dashboard/alljobs"); 
   }
 catch(e){
   toast.error(e?.response?.data?.msg);
-  return error;
   }
+  return null;
 }
 const AddJob = () => {
   const {user}=useOutletContext();

@@ -19,6 +19,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 
 
+//mockaroo
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -32,12 +33,20 @@ if(process.env.NODE_ENV==='development'){
   app.use(morgan('dev'));
 }
 app.use(express.static(path.resolve(__dirname,'./public')));
+
 const corsOptions = {
-  origin: "http://localhost:5173", // Allow requests from frontend
-  credentials: true, // Allow sending cookies & headers
+  origin: (origin, callback) => {
+    if (!origin || origin.startsWith("http://localhost:")) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
+
 //middleware
 import errorHandlerMiddleware from './middleware/errorHandler.js';
 import { authenticateUser } from './middleware/authHandler.js';
@@ -52,9 +61,6 @@ app.get('/test',(req,res)=>{
   res.json({msg:'test route'});
 })
 
-
-
-
 app.use("/jobs", authenticateUser,jobRouter);
 app.use("/users",authenticateUser,userRouter);
 app.use("/auth",authRouter);
@@ -66,13 +72,12 @@ app.use("*", (req, res) => {
 //error middleware
 app.use(errorHandlerMiddleware);
 
-const port=process.env.PORT||5100;
+const port=process.env.PORT||5200;
 try{
   await mongoose.connect(process.env.MONGO_URL);
  app.listen(port, () => {
   console.log(`server running in ${port} and mongodb is connected`);
 });
-
 }catch(e){
   console.log(e);
   process.exit(1);

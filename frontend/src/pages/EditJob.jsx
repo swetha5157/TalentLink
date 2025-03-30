@@ -16,14 +16,18 @@ return redirect('/dashboard/alljobs');
   }
 };
 export const action = async ({request, params }) => {
-  const formData=await request.formData();
-  const data=Object.fromEntries(formData);
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
   try{
-await customFetch.patch(`/jobs/${params.id}`, data);
+await customFetch.patch(`/jobs/${params.id}`,JSON.stringify(data), {
+      headers: {
+        "Content-Type": "application/json", // ✅ Ensure JSON format
+      },
+    });
 toast.success("Job edited successfully");
 return redirect("/dashboard/alljobs");
   }catch(e){
- toast.error(e.response.data.msg);
+ toast.error(e?.response?.data?.msg);
  return e;
   }
 };
